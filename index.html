@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sikal Yoper - Financial Dashboard</title>
+    <!-- Tailwind CSS modern -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Font Modern (Plus Jakarta Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #030712;
+            color: #F3F4F6;
+            overflow-x: hidden;
+        }
+        /* Efek Glow & Wave Kaca Biru di Landing Page (Mirip Equinox 3D Glass) */
+        .glass-wave {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(147, 51, 234, 0.4));
+            filter: blur(80px);
+            border-radius: 50% 30% 40% 60%;
+            animation: waveMotion 10s infinite alternate ease-in-out;
+        }
+        @keyframes waveMotion {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            100% { transform: translate(10px, -20px) scale(1.1) rotate(15deg); }
+        }
+        /* Efek Fade In */
+        .fade-in {
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased">
+
+    <!-- ================= DASHBOARD AWAL (TEMA SIKAL NEON BLUE) ================= -->
+    <div id="landing-page" class="fade-in max-w-md mx-auto w-full px-6 py-10 flex-grow flex flex-col justify-between items-center text-center relative">
+        
+        <!-- Header Navigasi Tengah SIKAL dengan Logo Kuda -->
+        <div class="w-full flex flex-col items-center justify-center gap-3 mb-8">
+            <div class="flex items-center justify-center gap-2">
+                <!-- Logo Kuda -->
+                <svg class="w-7 h-7 text-blue-500 filter drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19,22H5V20H19V22M17,11C17,11 17,8 15,6C13.6,4.6 11.2,4 9,5C7.2,5.8 6.4,7.2 6,9C5.6,10.8 5,12 5,12C5,12 4.6,13 4,12C3.4,11 3,11 3,11C3,11 3,13 4,14C5,15 6,15.6 7,16C8,16.4 9,17 9,18V19H17V17C17,16 16.5,14 16,13C15.5,12 15,11.5 16,11C17,10.5 17,11 17,11Z"/>
+                </svg>
+                <span class="text-lg font-black tracking-widest text-white">SIKAL</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 text-[10px] text-green-400 font-semibold bg-green-500/10 px-2.5 py-1 rounded-full border border-green-500/20">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span> Online bray
+            </div>
+        </div>
+
+        <!-- Bagian Tengah: Teks & Animasi Wave Kaca Premium -->
+        <div class="my-auto relative w-full flex flex-col items-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-[10px] font-semibold mb-6 border border-blue-500/20">
+                <span class="bg-blue-500 text-white text-[9px] px-1.5 py-0.5 rounded-full uppercase">New</span>
+                We've made our pricing public →
+            </div>
+
+            <h1 class="text-3xl font-extrabold tracking-tight leading-tight text-white" id="txt-title">
+                Transform Your Business <br>
+                With Our <span class="italic font-normal text-blue-400">SaaS Solution</span>
+            </h1>
+
+            <p class="mt-4 text-gray-400 text-xs leading-relaxed max-w-xs" id="txt-subtitle">
+                catat pengeluaran dan pemasukan anda di sini bray,dengan alat super canggih
+            </p>
+
+            <div class="relative w-full h-44 my-6 flex items-center justify-center overflow-hidden rounded-2xl border border-white/5 bg-slate-950/40">
+                <div class="glass-wave absolute w-48 h-32 opacity-70"></div>
+                <div class="absolute inset-0 bg-white/[0.02] backdrop-blur-md rounded-2xl"></div>
+                <div class="z-10 text-center">
+                    <p class="text-[10px] uppercase font-bold text-blue-300 tracking-widest animate-pulse">Wave Engine</p>
+                    <p class="text-xs text-gray-400 mt-1">Financial Interface</p>
+                </div>
+            </div>
+
+            <div class="w-full flex flex-col gap-2.5 px-6">
+                <button id="btn-getstarted" onclick="pindahKeFitur()" class="w-full py-3.5 bg-white hover:bg-gray-100 text-gray-950 font-bold text-xs rounded-xl shadow-lg transition-all active:scale-95 cursor-pointer">
+                    Get started
+                </button>
+                <button id="btn-demo" onclick="pindahKeFitur()" class="w-full py-3.5 bg-transparent border border-gray-800 text-white text-xs font-semibold rounded-xl hover:bg-white/5 transition-all cursor-pointer">
+                    Request a Demo →
+                </button>
+            </div>
+        </div>
+
+        <div class="w-full border-t border-gray-900 pt-6 mt-8 flex justify-around items-center opacity-45">
+            <span class="text-[10px] font-bold text-gray-400">Webflow</span>
+            <span class="text-[10px] font-bold text-gray-400">Relume</span>
+            <span class="text-[10px] font-bold text-gray-400">Capsule</span>
+        </div>
+    </div>
+
+
+    <!-- ================= BAGIAN DALAM (TEMA DARK NEO-BRUTALIST MATCHING BG) ================= -->
+    <div id="main-app" class="hidden fade-in max-w-md mx-auto w-full px-4 py-6 bg-[#030712] min-h-screen text-white flex flex-col justify-between">
+        
+        <div>
+            <!-- Header Navigasi + Pilihan Bahasa Berdampak Global -->
+            <div class="flex flex-col gap-3 mb-6">
+                <div class="flex justify-between items-center">
+                    <button id="btn-back" onclick="kembaliKeLanding()" class="text-xs font-bold text-gray-400 hover:text-white flex items-center gap-1 cursor-pointer">
+                        ← Kembali ke Awal
+                    </button>
+                </div>
+                
+                <div class="w-full">
+                    <label class="block text-[10px] font-bold text-gray-400 mb-1">Select Language / Country</label>
+                    <select id="select-lang" onchange="ubahBahasa(this.value)" class="w-full bg-[#0b0f19] border border-slate-800 text-xs font-semibold text-white rounded-lg px-2.5 py-2.5 focus:outline-none">
+                        <option value="id">🇮🇩 Indonesia (Rupiah - Rp)</option>
+                        <option value="en">🇺🇸 United States (Dollar - $)</option>
+                        <option value="gb">🇬🇧 United Kingdom (Pound - £)</option>
+                        <option value="de">🇩🇪 Deutschland (Euro - €)</option>
+                        <option value="fr">🇫🇷 France (Euro - €)</option>
+                        <option value="es">🇪🇸 España (Euro - €)</option>
+                        <option value="ja">🇯🇵 日本 (Yen - ¥)</option>
+                        <option value="ko">🇰🇷 대한민국 (Won - ₩)</option>
+                        <option value="zh">🇨🇳 中国 (Yuan - ¥)</option>
+                        <option value="ru">🇷🇺 Россия (Ruble - ₽)</option>
+                        <option value="in">🇮🇳 India (Rupee - ₹)</option>
+                        <option value="vn">🇻🇳 Việt Nam (Dong - ₫)</option>
+                        <option value="sa">🇸🇦 السعودية (Riyal - SR)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- BARIS 1: Laporan Bulanan -->
+            <div class="bg-[#0b0f19] border-2 border-slate-800 rounded-2xl p-4 mb-4 shadow-[4px_4px_0px_0px_rgba(59,130,246,0.3)]">
+                <p id="txt-warn" class="text-[10px] font-extrabold uppercase tracking-wider text-red-400 mb-2">
+                    ⚠️ Jangan isi angka sebelum 1 bulan, otomatis refresh keluarkan angka setelah satu bulan
+                </p>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="p-3 bg-red-950/20 border-2 border-red-900/50 rounded-xl">
+                        <p id="lbl-total-keluar" class="text-[10px] font-bold text-red-400">Total Bulanan Pengeluaran</p>
+                        <p id="total-bulan-keluar" class="text-sm font-extrabold text-red-500 mt-1">Rp 0</p>
+                    </div>
+                    <div class="p-3 bg-green-950/20 border-2 border-green-900/50 rounded-xl">
+                        <p id="lbl-total-masuk" class="text-[10px] font-bold text-green-400">Total Bulanan Pemasukan</p>
+                        <p id="total-bulan-masuk" class="text-sm font-extrabold text-green-500 mt-1">Rp 0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BARIS 2: Hari Ini (Berjalan Selama Kurun Waktu 1 Bulan) -->
+            <div class="grid grid-cols-2 gap-3 mb-4">
+                <div class="p-4 bg-[#0b0f19] border-2 border-slate-800 rounded-2xl shadow-[4px_4px_0px_0px_rgba(59,130,246,0.3)]">
+                    <p id="lbl-hari-keluar" class="text-[11px] font-bold text-gray-400">Pengeluaran Angka Hari Ini</p>
+                    <p id="hari-ini-keluar" class="text-base font-extrabold text-red-500 mt-1">Rp 0</p>
+                </div>
+                <div class="p-4 bg-[#0b0f19] border-2 border-slate-800 rounded-2xl shadow-[4px_4px_0px_0px_rgba(59,130,246,0.3)]">
+                    <p id="lbl-hari-masuk" class="text-[11px] font-bold text-gray-400">Pemasukan Angka Hari Ini</p>
+                    <p id="hari-ini-masuk" class="text-base font-extrabold text-green-600 mt-1">Rp 0</p>
+                </div>
+            </div>
+
+            <!-- BARIS 3: Input + Dropdown -->
+            <div class="bg-[#0b0f19] border-2 border-slate-800 rounded-2xl p-4 mb-4 shadow-[4px_4px_0px_0px_rgba(59,130,246,0.3)]">
+                <div class="flex justify-between items-center mb-3">
+                    <p id="lbl-input-title" class="text-xs font-extrabold text-gray-300">Masukan Nominal Pengeluaran/Pemasukan Hari Ini</p>
+                    
+                    <div class="relative inline-block text-left">
+                        <button onclick="toggleDropdown()" class="p-1.5 bg-slate-900 hover:bg-slate-850 border-2 border-slate-800 rounded-lg focus:outline-none cursor-pointer">
+                            <span class="font-extrabold text-xs text-white">⋮ <span id="lbl-opsi-btn">Opsi</span></span>
+                        </button>
+                        <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-32 rounded-xl bg-slate-950 border-2 border-slate-800 shadow-lg z-20">
+                            <div class="py-1">
+                                <button id="opt-keluar" onclick="pilihOpsi('Pengeluaran')" class="w-full text-left px-3 py-2 text-xs text-red-400 hover:bg-slate-900 font-extrabold">Pengeluaran</button>
+                                <button id="opt-masuk" onclick="pilihOpsi('Pemasukan')" class="w-full text-left px-3 py-2 text-xs text-green-400 hover:bg-slate-900 font-extrabold">Pemasukan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 text-[10px] font-bold">
+                    <span id="lbl-status">Pilihan Hack:</span> <span id="label-kategori" class="bg-red-500/10 text-red-400 px-2 py-0.5 rounded border border-red-900/40 uppercase">Pengeluaran</span>
+                </div>
+
+                <div class="flex gap-2">
+                    <input type="number" id="nominal-input" placeholder="Ketik nominal..." class="flex-grow bg-slate-950 border-2 border-slate-800 rounded-xl px-3 py-3 text-xs text-white focus:outline-none focus:ring-2 focus:ring-blue-500 font-bold">
+                    <button id="btn-simpan" onclick="tambahData()" class="px-5 py-3 bg-[#A3E635] hover:bg-[#8fd125] text-slate-950 border-2 border-slate-800 font-black text-xs rounded-xl transition-all cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-0.5 active:shadow-none">
+                        Simpan
+                    </button>
+                </div>
+            </div>
+
+            <!-- BARIS 4: Riwayat Transaksi -->
+            <div class="bg-[#0b0f19] border-2 border-slate-800 rounded-2xl p-4 shadow-[4px_4px_0px_0px_rgba(59,130,246,0.3)]">
+                <div class="flex justify-between items-center mb-3 border-b-2 border-slate-800 pb-2">
+                    <h3 id="lbl-riwayat-title" class="text-xs font-black uppercase text-gray-300 tracking-wider">Riwayat Transaksi</h3>
+                    <button id="btn-hapus-semua" onclick="hapusSemua()" class="text-[10px] text-red-400 font-bold hover:underline cursor-pointer">Hapus Semua</button>
+                </div>
+                
+                <div class="max-h-44 overflow-y-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead>
+                            <tr class="text-gray-500 font-extrabold border-b border-slate-800">
+                                <th id="th-tanggal" class="pb-2">Tanggal</th>
+                                <th id="th-hari" class="pb-2">Hari</th>
+                                <th id="th-jenis" class="pb-2">Jenis</th>
+                                <th id="th-jam" class="pb-2">Jam</th>
+                                <th id="th-nominal" class="pb-2 text-right">Nominal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabel-riwayat" class="divide-y divide-slate-900 font-bold text-gray-300">
+                            <!-- Data Transaksi -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center py-4 text-[9px] text-gray-600 font-bold border-t border-slate-900 mt-8">
+            Done in 3 Simple Steps. Trusted by 600+ bray.
+        </footer>
+    </div>
+
+    <!-- ================= LOGIKA JAVASCRIPT FIXED LOGIC KELUAR ANGKA ================= -->
+    <script>
+        let bahasaAktif = localStorage.getItem('sikal_lang') || 'id';
+        let database = JSON.parse(localStorage.getItem('bray_finance_db_clean')) || [];
+        let kategoriTerpilih = 'Pengeluaran';
+
+        const petaMataUang = {
+            id: 'IDR', en: 'USD', gb: 'GBP', de: 'EUR', fr: 'EUR', es: 'EUR', ja: 'JPY', ko: 'KRW', zh: 'CNY', ru: 'RUB', in: 'INR', vn: 'VND', sa: 'SAR'
+        };
+
+        const kamus = {
+            id: {
+                title: "Transform Your Business <br> With Our <span class='italic font-normal text-blue-400'>SaaS Solution</span>",
+                subtitle: "catat pengeluaran dan pemasukan anda di sini bray,dengan alat super canggih",
+                btnBack: "← Kembali ke Awal",
+                txtWarn: "⚠️ Jangan isi angka sebelum 1 bulan, otomatis refresh keluarkan angka setelah satu bulan",
+                lblTotalKeluar: "Total Bulanan Pengeluaran",
+                lblTotalMasuk: "Total Bulanan Pemasukan",
+                lblHariKeluar: "Pengeluaran Angka Hari Ini",
+                lblHariMasuk: "Pemasukan Angka Hari Ini",
+                lblInputTitle: "Masukan Nominal Pengeluaran/Pemasukan Hari Ini",
+                lblOpsiBtn: "Opsi",
+                optKeluar: "Pengeluaran",
+                optMasuk: "Pemasukan",
+                lblStatus: "Pilihan Hack:",
+                btnSimpan: "Simpan",
+                lblRiwayatTitle: "Riwayat Transaksi",
+                btnHapusSemua: "Hapus Semua",
+                thTanggal: "Tanggal",
+                thHari: "Hari",
+                thJenis: "Jenis",
+                thJam: "Jam",
+                thNominal: "Nominal",
+                alertInput: "Ketik nominalnya dulu bray!",
+                alertKonfirmasi: "Bersihkan semua riwayat transaksi bray?",
+                namaHari: ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"],
+                belumAda: "Belum ada input transaksi."
+            },
+            en: {
+                title: "Transform Your Business <br> With Our <span class='italic font-normal text-blue-400'>SaaS Solution</span>",
+                subtitle: "record your expenses and income here bro, with a super sophisticated tool",
+                btnBack: "← Back to Home",
+                txtWarn: "⚠️ Do not fill in numbers before 1 month, automatically refresh and show numbers after one month",
+                lblTotalKeluar: "Monthly Total Expenses",
+                lblTotalMasuk: "Monthly Total Income",
+                lblHariKeluar: "Today's Accumulation Expenses",
+                lblHariMasuk: "Today's Accumulation Income",
+                lblInputTitle: "Enter Today's Expenses/Income Amount",
+                lblOpsiBtn: "Option",
+                optKeluar: "Expenses",
+                optMasuk: "Income",
+                lblStatus: "Selected Option:",
+                btnSimpan: "Save",
+                lblRiwayatTitle: "Transaction History",
+                btnHapusSemua: "Clear All",
+                thTanggal: "Date",
+                thHari: "Day",
+                thJenis: "Type",
+                thJam: "Time",
+                thNominal: "Amount",
+                alertInput: "Please type the amount first!",
+                alertKonfirmasi: "Clear all transaction history?",
+                namaHari: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                belumAda: "No transactions recorded."
+            },
+            gb: {
+                title: "Transform Your Business <br> With Our <span class='italic font-normal text-blue-400'>SaaS Solution</span>",
+                subtitle: "record your expenses and income here mate, with a super sophisticated tool",
+                btnBack: "← Back to Home",
+                txtWarn: "⚠️ Do not fill in numbers before 1 month, automatically refresh and show numbers after one month",
+                lblTotalKeluar: "Monthly Total Expenses",
+                lblTotalMasuk: "Monthly Total Income",
+                lblHariKeluar: "Today's Expenses",
+                lblHariMasuk: "Today's Income",
+                lblInputTitle: "Enter Today's Expenses/Income Amount",
+                lblOpsiBtn: "Option",
+                optKeluar: "Expenses",
+                optMasuk: "Income",
+                lblStatus: "Selected Option:",
+                btnSimpan: "Save",
+                lblRiwayatTitle: "Transaction History",
+                btnHapusSemua: "Clear All",
+                thTanggal: "Date",
+                thHari: "Day",
+                thJenis: "Type",
+                thJam: "Time",
+                thNominal: "Amount",
+                alertInput: "Please type the amount first!",
+                alertKonfirmasi: "Clear all transaction history?",
+                namaHari: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                belumAda: "No transactions recorded."
+            },
+            de: {
+                title: "Transformieren Sie Ihr Business <br> Mit Unserer <span class='italic font-normal text-blue-400'>SaaS-Lösung</span>",
+                subtitle: "Erfassen Sie hier Ihre Ausgaben und Einnahmen mit einem hochentwickelten Tool",
+                btnBack: "← Zurück",
+                txtWarn: "⚠️ Bitte tragen Sie vor Ablauf von 1 Monat keine Zahlen ein, die Daten werden nach einem Monat aktualisiert",
+                lblTotalKeluar: "Monatliche Gesamtausgaben",
+                lblTotalMasuk: "Monatliche Gesamteinnahmen",
+                lblHariKeluar: "Ausgaben Heute",
+                lblHariMasuk: "Einnahmen Heute",
+                lblInputTitle: "Geben Sie die heutigen Ausgaben/Einnahmen ein",
+                lblOpsiBtn: "Option",
+                optKeluar: "Ausgaben",
+                optMasuk: "Einnahmen",
+                lblStatus: "Ausgewählte Option:",
+                btnSimpan: "Speichern",
+                lblRiwayatTitle: "Transaktionsverlauf",
+                btnHapusSemua: "Alles löschen",
+                thTanggal: "Datum",
+                thHari: "Tag",
+                thJenis: "Typ",
+                thJam: "Zeit",
+                thNominal: "Betrag",
+                alertInput: "Bitte geben Sie zuerst einen Betrag ein!",
+                alertKonfirmasi: "Möchten Sie den gesamten Verlauf löschen?",
+                namaHari: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+                belumAda: "Keine Transaktionen aufgezeichnet."
+            },
+            fr: {
+                title: "Transformez Votre Entreprise <br> Avec Notre <span class='italic font-normal text-blue-400'>Solution SaaS</span>",
+                subtitle: "Enregistrez vos dépenses et revenus ici avec un outil super sophistiqué",
+                btnBack: "← Retour",
+                txtWarn: "⚠️ Ne remplissez pas les chiffres avant 1 mois, l'affichage s'actualisera après un mois",
+                lblTotalKeluar: "Total des Dépenses Mensuelles",
+                lblTotalMasuk: "Total des Revenus Mensuels",
+                lblHariKeluar: "Dépenses d'Aujourd'hui",
+                lblHariMasuk: "Revenus d'Aujourd'hui",
+                lblInputTitle: "Entrez le montant des dépenses/revenus d'aujourd'hui",
+                lblOpsiBtn: "Option",
+                optKeluar: "Dépenses",
+                optMasuk: "Revenus",
+                lblStatus: "Option Sélectionnée:",
+                btnSimpan: "Enregistrer",
+                lblRiwayatTitle: "Historique des Transactions",
+                btnHapusSemua: "Tout Effacer",
+                thTanggal: "Date",
+                thHari: "Jour",
+                thJenis: "Type",
+                thJam: "Heure",
+                thNominal: "Montant",
+                alertInput: "Veuillez saisir un montant d'abord !",
+                alertKonfirmasi: "Effacer tout l'historique des transactions ?",
+                namaHari: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+                belumAda: "Aucune transaction enregistrée."
+            },
+            es: {
+                title: "Transforme Su Negocio <br> Con Nuestra <span class='italic font-normal text-blue-400'>Solución SaaS</span>",
+                subtitle: "registre sus gastos e ingresos aquí, con una herramienta súper sofisticada",
+                btnBack: "← Volver al Inicio",
+                txtWarn: "⚠️ No ingrese números antes de 1 mes, se actualizará automáticamente después de un mes",
+                lblTotalKeluar: "Gastos Mensuales Totales",
+                lblTotalMasuk: "Ingresos Mensuales Totales",
+                lblHariKeluar: "Gastos de Hoy",
+                lblHariMasuk: "Ingresos de Hoy",
+                lblInputTitle: "Ingrese el Monto de Gastos/Ingresos de Hoy",
+                lblOpsiBtn: "Opción",
+                optKeluar: "Gastos",
+                optMasuk: "Ingresos",
+                lblStatus: "Opción Seleccionada:",
+                btnSimpan: "Guardar",
+                lblRiwayatTitle: "Historial de Transacciones",
+                btnHapusSemua: "Borrar Todo",
+                thTanggal: "Fecha",
+                thHari: "Día",
+                thJenis: "Tipo",
+                thJam: "Hora",
+                thNominal: "Monto",
+                alertInput: "¡Por favor ingrese el monto primero!",
+                alertKonfirmasi: "¿Borrar todo el historial de transacciones?",
+                namaHari: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+                belumAda: "No hay transacciones registradas."
+            },
+            ja: {
+                title: "ビジネスを変革する <br> 当社の <span class='italic font-normal text-blue-400'>SaaSソリューション</span>",
+                subtitle: "超高度なツールで、支出と収入をここに記録します",
+                btnBack: "← 戻る",
+                txtWarn: "⚠️ 1ヶ月未満は数字を入力しないでください。1ヶ月後に自動的に更新され数字が表示されます",
+                lblTotalKeluar: "今月の総支出",
+                lblTotalMasuk: "今月の総収入",
+                lblHariKeluar: "今日の支出",
+                lblHariMasuk: "今日の収入",
+                lblInputTitle: "今日の支出・収入額を入力",
+                lblOpsiBtn: "オプション",
+                optKeluar: "支出",
+                optMasuk: "収入",
+                lblStatus: "選択中:",
+                btnSimpan: "保存",
+                lblRiwayatTitle: "取引履歴",
+                btnHapusSemua: "すべて削除",
+                thTanggal: "日付",
+                thHari: "曜日",
+                thJenis: "種類",
+                thJam: "時間",
+                thNominal: "金額",
+                alertInput: "金額を先に入力してください！",
+                alertKonfirmasi: "すべての取引履歴を削除しますか？",
+                namaHari: ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"],
+                belumAda: "取引履歴がありません。"
+            },
+            ko: {
+                title: "비즈니스를 혁신하십시오 <br> 당사의 <span class='italic font-normal text-blue-400'>SaaS 솔루션과 함께</span>",
+                subtitle: "초고성능 툴로 지출과 수입을 여기에 안전하게 기록하세요",
+                btnBack: "← 홈으로 이동",
+                txtWarn: "⚠️ 1개월 이전에는 숫자를 입력하지 마십시오. 1개월 후에 자동으로 갱신되어 표시됩니다",
+                lblTotalKeluar: "이번 달 총 지출",
+                lblTotalMasuk: "이번 달 총 수입",
+                lblHariKeluar: "오늘의 지출",
+                lblHariMasuk: "오늘의 수입",
+                lblInputTitle: "오늘의 지출/수입 금액 입력",
+                lblOpsiBtn: "옵션",
+                optKeluar: "지출",
+                optMasuk: "수입",
+                lblStatus: "선택된 옵션:",
+                btnSimpan: "저장",
+                lblRiwayatTitle: "거래 내역",
+                btnHapusSemua: "모두 삭제",
+                thTanggal: "날짜",
+                thHari: "요일",
+                thJenis: "구분",
+                thJam: "시간",
+                thNominal: "금액",
+                alertInput: "금액을 먼저 입력해 주세요!",
+                alertKonfirmasi: "모든 거래 내역을 지우시겠습니까?",
+                namaHari: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"],
+                belumAda: "기록된 거래가 없습니다."
+            },
+            zh: {
+                title: "改变您的业务 <br> 体验我们的 <span class='italic font-normal text-blue-400'>SaaS 解决方案</span>",
+                subtitle: "在这里记录您的支出和收入，使用超级先进的工具",
+                btnBack: "← 返回首页",
+                txtWarn: "⚠️ 1个月前请勿填写数字，一个月后将自动刷新显示数据",
+                lblTotalKeluar: "月度总支出",
+                lblTotalMasuk: "月度总收入",
+                lblHariKeluar: "今日支出",
+                lblHariMasuk: "今日收入",
+                lblInputTitle: "输入今日支出/收入金额",
+                lblOpsiBtn: "选项",
+                optKeluar: "支出",
+                optMasuk: "收入",
+                lblStatus: "当前选择:",
+                btnSimpan: "保存",
+                lblRiwayatTitle: "交易历史",
+                btnHapusSemua: "清除全部",
+                thTanggal: "日期",
+                thHari: "星期",
+                thJenis: "类型",
+                thJam: "时间",
+                thNominal: "金额",
+                alertInput: "请先输入金额！",
+                alertKonfirmasi: "确定清除所有交易记录吗？",
+                namaHari: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+                belumAda: "尚无交易记录。"
+            },
+            ru: {
+                title: "Трансформируйте Свой Бизнес <br> С Нашим <span class='italic font-normal text-blue-400'>SaaS-Решением</span>",
+                subtitle: "Записывайте расходы и доходы здесь с помощью суперинтеллектуального инструмента",
+                btnBack: "← Назад",
+                txtWarn: "⚠️ Не вводите цифры раньше 1 месяца, данные автоматически обновятся через месяц",
+                lblTotalKeluar: "Общие расходы за месяц",
+                lblTotalMasuk: "Общие доходы за месяц",
+                lblHariKeluar: "Расходы сегодня",
+                lblHariMasuk: "Доходы сегодня",
+                lblInputTitle: "Введите сумму сегодняшних расходов/доходов",
+                lblOpsiBtn: "Опция",
+                optKeluar: "Расходы",
+                optMasuk: "Доходы",
+                lblStatus: "Выбранная Опция:",
+                btnSimpan: "Сохранить",
+                lblRiwayatTitle: "История транзакций",
+                btnHapusSemua: "Очистить всё",
+                thTanggal: "Дата",
+                thHari: "День",
+                thJenis: "Тип",
+                thJam: "Время",
+                thNominal: "Сумма",
+                alertInput: "Пожалуйста, сначала введите сумму!",
+                alertKonfirmasi: "Очистить всю историю транзакций?",
+                namaHari: ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"],
+                belumAda: "Транзакции отсутствуют."
+            },
+            in: {
+                title: "अपने व्यवसाय को बदलें <br> हमारे <span class='italic font-normal text-blue-400'>SaaS समाधान के साथ</span>",
+                subtitle: "सुपर एडवांस टูล के साथ अपने खर्च and आय को यहाँ दर्ज करें",
+                btnBack: "← पीछे जाएं",
+                txtWarn: "⚠️ 1 महीने से पहले नंबर न भरें, एक महीने बाद यह स्वचालित रूप से अपडेट हो जाएगा",
+                lblTotalKeluar: "मासिक कुल खर्च",
+                lblTotalMasuk: "मासिक कुल आय",
+                lblHariKeluar: "आज का खर्च",
+                lblHariMasuk: "आज की आय",
+                lblInputTitle: "आज के खर्च/आय की राशि दर्ज करें",
+                lblOpsiBtn: "विकल्प",
+                optKeluar: "खर्च",
+                optMasuk: "आय",
+                lblStatus: "चुना हुआ विकल्प:",
+                btnSimpan: "सुरक्षित करें",
+                lblRiwayatTitle: "लेनदेन का इतिहास",
+                btnHapusSemua: "सब हटाएँ",
+                thTanggal: "तारीख",
+                thHari: "दिन",
+                thJenis: "प्रकार",
+                thJam: "समय",
+                thNominal: "राशि",
+                alertInput: "कृपया पहले राशि दर्ज करें!",
+                alertKonfirmasi: "क्या आप सभी लेनदेन इतिहास को साफ़ करना चाहते हैं?",
+                namaHari: ["रविवार", "सोमवार", "मंगलवार", "बुधवार", "गुरुवार", "शुक्रवार", "शनिवार"],
+                belumAda: "कोई लेनदेन रिकॉर्ड नहीं है।"
+            },
+            vn: {
+                title: "Chuyển Đổi Doanh Nghiệp <br> Với <span class='italic font-normal text-blue-400'>Giải Pháp SaaS Của Chúng Tôi</span>",
+                subtitle: "Ghi lại các khoản chi tiêu và thu nhập tại đây với công cụ siêu hiện đại",
+                btnBack: "← Quay Lại",
+                txtWarn: "⚠️ Không điền số trước 1 tháng, hệ thống sẽ tự động cập nhật hiển thị sau một tháng",
+                lblTotalKeluar: "Tổng Chi Tiêu Hàng Tháng",
+                lblTotalMasuk: "Tổng Thu Nhập Hàng Tháng",
+                lblHariKeluar: "Chi Tiêu Hôm Nay",
+                lblHariMasuk: "Thu Nhập Hôm Nay",
+                lblInputTitle: "Nhập số tiền chi tiêu/thu nhập hôm nay",
+                lblOpsiBtn: "Tùy chọn",
+                optKeluar: "Chi tiêu",
+                optMasuk: "Thu nhập",
+                lblStatus: "Tùy Chọn Đã Chọn:",
+                btnSimpan: "Lưu lại",
+                lblRiwayatTitle: "Lịch Sử Giao Dịch",
+                btnHapusSemua: "Xóa tất cả",
+                thTanggal: "Ngày",
+                thHari: "Thứ",
+                thJenis: "Loại",
+                thJam: "Giờ",
+                thNominal: "Số tiền",
+                alertInput: "Vui lòng nhập số tiền trước!",
+                alertKonfirmasi: "Bạn có chắc chắn muốn xóa toàn bộ lịch sử giao dịch?",
+                namaHari: ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"],
+                belumAda: "Chưa có giao dịch nào được ghi lại."
+            },
+            sa: {
+                title: "حول عملك <br> مع <span class='italic font-normal text-blue-400'>حل SaaS الخاص بنا</span>",
+                subtitle: "سجل نفقاتك ودخلك هنا يا صديقي باستخدام أداة متطورة للغاية",
+                btnBack: "← العودة للرئيسية",
+                txtWarn: "⚠️ لا تقم بإدخال الأرقام قبل شهر واحد، سيتم التحديث التلقائي وإظهار الأرقام بعد مرور شهر",
+                lblTotalKeluar: "إجمالي النفقات الشهرية",
+                lblTotalMasuk: "إجمالي الدخل الشهري",
+                lblHariKeluar: "نفقات اليوم",
+                lblHariMasuk: "دخل اليوم",
+                lblInputTitle: "أدخل مبلغ النفقات/الدخل لليوم",
+                lblOpsiBtn: "خيار",
+                optKeluar: "النفقات",
+                optMasuk: "الدخل",
+                lblStatus: "الخيار المحدد:",
+                btnSimpan: "حفظ",
+                lblRiwayatTitle: "سجل المعاملات",
+                btnHapusSemua: "حذف الكل",
+                thTanggal: "التاريخ",
+                thHari: "اليوم",
+                thJenis: "النوع",
+                thJam: "الوقت",
+                thNominal: "المبلغ",
+                alertInput: "يرجى كتابة المبلغ أولاً!",
+                alertKonfirmasi: "هل أنت متأكد من حذف السجل بالكامل؟",
+                namaHari: ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"],
+                belumAda: "لا توجد معاملات مسجلة."
+            }
+        };
+
+        const formatMataUang = {
+            IDR: { locale: 'id-ID', symbol: 'Rp ' },
+            USD: { locale: 'en-US', symbol: '$' },
+            EUR: { locale: 'de-DE', symbol: '€' },
+            JPY: { locale: 'ja-JP', symbol: '¥' },
+            CNY: { locale: 'zh-CN', symbol: '¥' },
+            SAR: { locale: 'ar-SA', symbol: 'SR ' },
+            GBP: { locale: 'en-GB', symbol: '£' },
+            RUB: { locale: 'ru-RU', symbol: '₽' },
+            INR: { locale: 'en-IN', symbol: '₹' },
+            KRW: { locale: 'ko-KR', symbol: '₩' },
+            VND: { locale: 'vi-VN', symbol: '₫' }
+        };
+
+        function ubahBahasa(lang) {
+            bahasaAktif = lang;
+            localStorage.setItem('sikal_lang', lang);
+            
+            document.getElementById('txt-title').innerHTML = kamus[lang].title;
+            document.getElementById('txt-subtitle').innerText = kamus[lang].subtitle;
+            document.getElementById('btn-back').innerText = kamus[lang].btnBack;
+            document.getElementById('txt-warn').innerText = kamus[lang].txtWarn;
+            document.getElementById('lbl-total-keluar').innerText = kamus[lang].lblTotalKeluar;
+            document.getElementById('lbl-total-masuk').innerText = kamus[lang].lblTotalMasuk;
+            document.getElementById('lbl-hari-keluar').innerText = kamus[lang].lblHariKeluar;
+            document.getElementById('lbl-hari-masuk').innerText = kamus[lang].lblHariMasuk;
+            document.getElementById('lbl-input-title').innerText = kamus[lang].lblInputTitle;
+            document.getElementById('lbl-opsi-btn').innerText = kamus[lang].lblOpsiBtn;
+            document.getElementById('opt-keluar').innerText = kamus[lang].optKeluar;
+            document.getElementById('opt-masuk').innerText = kamus[lang].optMasuk;
+            document.getElementById('lbl-status').innerText = kamus[lang].lblStatus;
+            document.getElementById('btn-simpan').innerText = kamus[lang].btnSimpan;
+            document.getElementById('lbl-riwayat-title').innerText = kamus[lang].lblRiwayatTitle;
+            document.getElementById('btn-hapus-semua').innerText = kamus[lang].btnHapusSemua;
+            
+            document.getElementById('th-tanggal').innerText = kamus[lang].thTanggal;
+            document.getElementById('th-hari').innerText = kamus[lang].thHari;
+            document.getElementById('th-jenis').innerText = kamus[lang].thJenis;
+            document.getElementById('th-jam').innerText = kamus[lang].thJam;
+            document.getElementById('th-nominal').innerText = kamus[lang].thNominal;
+
+            pilihOpsi(kategoriTerpilih); 
+            renderData(); 
+        }
+
+        function pindahKeFitur() {
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('hidden');
+            renderData();
+        }
+
+        function kembaliKeLanding() {
+            document.getElementById('main-app').classList.add('hidden');
+            document.getElementById('landing-page').classList.remove('hidden');
+        }
+
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown-menu');
+            dropdown.classList.toggle('hidden');
+        }
+
+        function pilihOpsi(opsi) {
+            kategoriTerpilih = opsi;
+            const labelNode = document.getElementById('label-kategori');
+            
+            if(opsi === 'Pengeluaran') {
+                labelNode.innerText = kamus[bahasaAktif].optKeluar;
+                labelNode.className = "bg-red-500/10 text-red-400 px-2 py-0.5 rounded border border-red-900/40 uppercase text-[10px] font-bold";
+            } else {
+                labelNode.innerText = kamus[bahasaAktif].optMasuk;
+                labelNode.className = "bg-green-500/10 text-green-400 px-2 py-0.5 rounded border border-green-900/40 uppercase text-[10px] font-bold";
+            }
+            toggleDropdown();
+        }
+
+        function tambahData() {
+            const inputVal = document.getElementById('nominal-input').value;
+            if(!inputVal || inputVal <= 0) return alert(kamus[bahasaAktif].alertInput);
+
+            const dataBaru = {
+                id: Date.now(),
+                tanggal: new Date().toISOString().split('T')[0],
+                timestamp: Date.now(),
+                kategori: kategoriTerpilih,
+                nominal: parseFloat(inputVal)
+            };
+
+            database.push(dataBaru);
+            localStorage.setItem('bray_finance_db_clean', JSON.stringify(database));
+            document.getElementById('nominal-input').value = '';
+            renderData();
+        }
+
+        function htmlEscape(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        }
+
+        function hapusSemua() {
+            if(confirm(kamus[bahasaAktif].alertKonfirmasi)) {
+                database = [];
+                localStorage.removeItem('bray_finance_db_clean');
+                renderData();
+            }
+        }
+
+        function formatMataUangLokalisasi(angka) {
+            const curCode = petaMataUang[bahasaAktif] || 'IDR';
+            const config = formatMataUang[curCode];
+            return config.symbol + angka.toLocaleString(config.locale, { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+        }
+
+        // ================= PERBAIKAN LOGIKA DISINI BRAY =================
+        function renderData() {
+            const tabel = document.getElementById('tabel-riwayat');
+            tabel.innerHTML = '';
+
+            let totalKeluarBerjalan = 0;
+            let totalMasukBerjalan = 0;
+            let bulanKeluarArsip = 0;
+            let bulanMasukArsip = 0;
+
+            const sekarang = Date.now();
+            const satuBulanMs = 30 * 24 * 60 * 60 * 1000; // 30 Hari
+
+            if (database.length === 0) {
+                tabel.innerHTML = `<tr><td colspan="5" class="text-center py-4 text-gray-600">${kamus[bahasaAktif].belumAda}</td></tr>`;
+            }
+
+            const sortedData = [...database].reverse();
+
+            sortedData.forEach(item => {
+                const nominal = parseFloat(item.nominal);
+                const usiaDataMs = sekarang - item.timestamp;
+
+                // 1. Logika Kotak Tengah (Menampung & Tahan data selama belum genap 1 bulan)
+                if (usiaDataMs < satuBulanMs) {
+                    if (item.kategori === 'Pengeluaran') totalKeluarBerjalan += nominal;
+                    if (item.kategori === 'Pemasukan') totalMasukBerjalan += nominal;
+                } 
+                // 2. Logika Kotak Atas (Otomatis masuk arsip setelah melewati 1 bulan penuh)
+                else {
+                    if (item.kategori === 'Pengeluaran') bulanKeluarArsip += nominal;
+                    if (item.kategori === 'Pemasukan') bulanMasukArsip += nominal;
+                }
+
+                const safeKategori = htmlEscape(item.kategori);
+                const isPengeluaran = safeKategori === 'Pengeluaran';
+                
+                const dateObj = new Date(item.timestamp || item.id);
+                const hari = kamus[bahasaAktif].namaHari[dateObj.getDay()];
+                const jam = dateObj.toTimeString().split(' ')[0].substring(0, 5);
+
+                const tipeBahasa = isPengeluaran ? kamus[bahasaAktif].optKeluar : kamus[bahasaAktif].optMasuk;
+
+                const row = document.createElement('tr');
+                row.className = "hover:bg-slate-900/30 border-b border-slate-900/50";
+                row.innerHTML = `
+                    <td class="py-2.5 text-gray-400">${htmlEscape(item.tanggal)}</td>
+                    <td class="py-2.5 text-gray-400">${htmlEscape(hari)}</td>
+                    <td class="py-2.5 ${isPengeluaran ? 'text-red-400' : 'text-green-400'}">${htmlEscape(tipeBahasa)}</td>
+                    <td class="py-2.5 text-gray-400">${htmlEscape(jam)}</td>
+                    <td class="py-2.5 text-right font-extrabold ${isPengeluaran ? 'text-red-400' : 'text-green-400'}">${isPengeluaran ? '-' : '+'}${formatMataUangLokalisasi(nominal)}</td>
+                `;
+                tabel.appendChild(row);
+            });
+
+            // Sinkronisasi data ke Element UI
+            document.getElementById('hari-ini-keluar').innerText = formatMataUangLokalisasi(totalKeluarBerjalan);
+            document.getElementById('hari-ini-masuk').innerText = formatMataUangLokalisasi(totalMasukBerjalan);
+            document.getElementById('total-bulan-keluar').innerText = formatMataUangLokalisasi(bulanKeluarArsip);
+            document.getElementById('total-bulan-masuk').innerText = formatMataUangLokalisasi(bulanMasukArsip);
+        }
+
+        document.getElementById('select-lang').value = bahasaAktif;
+        ubahBahasa(bahasaAktif);
+    </script>
+</body>
+</html>
